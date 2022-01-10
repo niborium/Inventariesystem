@@ -1,0 +1,103 @@
+﻿@using Microsoft.AspNetCore.Http
+@model GammaltGlimmer.Models.Item
+@inject SignInManager<AppUser> signInmanager;
+@inject IHttpContextAccessor _httpContextAccessor
+@{
+    ViewData["Title"] = "Edit";
+}
+@{
+    var currentuser = _httpContextAccessor.HttpContext.User.Identity.Name;
+    var author = Model.CreatedBy;
+    var status = Model.Status;
+
+    var selectList = new SelectList(
+        new List<SelectListItem>
+        {
+            new SelectListItem {Text = "Transport", Value = "1"},
+            new SelectListItem {Text = "Hushåll", Value = "2"},
+            new SelectListItem {Text = "Dekoration", Value = "3"},
+        }, "Value", "Text");
+}
+<h1>Redigera</h1>
+
+<h4>Försäljningsobjekt</h4>
+<hr />
+@if (currentuser != Model.CreatedBy)
+{
+    <p>Du försöker redigera ett objekt som är skapad av någon annan, du har inte åtkomst till detta som Inköpare.</p>
+}
+@if (currentuser == Model.CreatedBy || User.IsInRole("Auctioneer"))
+{
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="ItemId" type="hidden"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReleaseYear" class="control-label"></label>
+                <input asp-for="ReleaseYear" class="form-control" />
+                <span asp-validation-for="ReleaseYear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartPrice" class="control-label"></label>
+                <input asp-for="StartPrice" class="form-control" />
+                <span asp-validation-for="StartPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PurchaseCost" class="control-label"></label>
+                <input asp-for="PurchaseCost" class="form-control" />
+                <span asp-validation-for="PurchaseCost" class="text-danger"></span>
+            </div>
+            @if (signInmanager.IsSignedIn(User) && User.IsInRole("Auctioneer"))
+            {
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinalPrice" class="control-label"></label>
+                <input asp-for="FinalPrice" class="form-control" />
+                <span asp-validation-for="FinalPrice" class="text-danger"></span>
+            </div>
+            }
+            <div class="form-group">
+                <input asp-for="CreatedBy" type="hidden" value=@author/>
+            </div>
+            <div class="form-group">
+                <input asp-for="Status" type="hidden" value=@status/>
+            </div>
+            <div class="form-group">
+                @Html.DropDownListFor(m => m.CategoryId, selectList, "Kategori", new { @class = "css-class" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+}
+@if (signInmanager.IsSignedIn(User) && User.IsInRole("Auctioneer"))
+{
+    <a asp-action="List">Tillbaka till listan</a>
+}
+else
+{
+    <a asp-action="ListPurchaser">Tillbaka till listan</a>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

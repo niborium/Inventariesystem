@@ -1,0 +1,35 @@
+﻿@model GammaltGlimmer.Models.AppUser
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Registrera dig som inköpare</h1>
+
+<form method="post" asp-controller="Home" asp-action="Register">
+    <div class="form-group col-sm-6">
+        <label for="Name">Namn</label>
+        <input type="text" class="form-control"
+        id="Name" asp-for="Name" placeholder="Fyll i ditt namn">
+    </div>
+
+    <div class="form-group col-sm-6">
+        <label for="EmailId">E-postadress</label>
+        <input type="email" class="form-control"
+        id="EmailId" asp-for="Email" placeholder="Fyll i din E-postadress">
+    </div>
+
+    <div class="form-group col-sm-6">
+        <label for="Username">Användarnamn</label>
+        <input type="text" class="form-control"
+        id="Username" asp-for="UserName" placeholder="Fyll i användarnamn">
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="Password">Lösenordord</label>
+        <input type="password" class="form-control"
+        id="Password" asp-for="Password" placeholder="Fyll i lösenord">
+    </div>
+    <div class="form-group col-sm-6">
+        <button type="submit" class="btn btn-primary">Registrera dig</button>
+    </div>
+</form>

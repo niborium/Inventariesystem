@@ -1,0 +1,16 @@
+﻿@inject SignInManager<AppUser> signInmanager;
+
+@{
+    ViewData["Title"] = "ItemIdExist";
+}
+
+<p>Fel: Du försöker använda ett ID-nummer som redan existerar på en befintlig produkt. Vänligen försök igen och välj ett annat ID-nummer.</p>
+
+@if (signInmanager.IsSignedIn(User) && User.IsInRole("Auctioneer"))
+{
+    <a asp-action="List">Tillbaka till listan</a>
+}
+else
+{
+    <a asp-action="ListPurchaser">Tillbaka till listan</a>
+}

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GammaltGlimmer", "GammaltGlimmer.csproj", "{4A6F5AEA-228C-4CFC-A4B3-F1DF676067CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A6F5AEA-228C-4CFC-A4B3-F1DF676067CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A6F5AEA-228C-4CFC-A4B3-F1DF676067CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A6F5AEA-228C-4CFC-A4B3-F1DF676067CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A6F5AEA-228C-4CFC-A4B3-F1DF676067CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7281BEBB-5A31-46C8-BED6-4D8EEB47FFA4}
+	EndGlobalSection
+EndGlobal
